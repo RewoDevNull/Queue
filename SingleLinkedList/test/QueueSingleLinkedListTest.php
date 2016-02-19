@@ -1,42 +1,39 @@
 <?php
 
-namespace Queue\implementation\test;
+namespace Queue\SingleLinkedList\test;
 
-use Queue\implementation\QueueItem;
-use Queue\implementation\QueueSingleLinkedList;
-use Queue\implementation\QueueSingleLinkedListIterable;
-use RuntimeException;
+use Queue\SingleLinkedList\QueueItemSingleLinked;
+use Queue\SingleLinkedList\QueueListSingleLinked;
 
-include_once('interfaces/QueueItemInterface.php');
-include_once('interfaces/QueueSingleLinkedListInterface.php');
-include_once('interfaces/QueueSingleLinkedListIterableInterface.php');
-include_once('implementation/QueueItem.php');
-include_once('implementation/QueueSingleLinkedList.php');
-include_once('implementation/QueueSingleLinkedListIterable.php');
+include_once('../../QueueListInterface.php');
+include_once('../../QueueItemInterface.php');
+include_once('../../QueueItemSingleLinkedInterface.php');
+include_once('../QueueItemSingleLinked.php');
+include_once('../QueueListSingleLinked.php');
 
-class QueueSingleLinkedListIterableTest extends \PHPUnit_Framework_TestCase
+class QueueSingleLinkedListTest extends \PHPUnit_Framework_TestCase
 {
-    /** @type QueueSingleLinkedListIterable */
+    /** @type QueueListSingleLinked */
     protected $queueListIterable = null;
 
     protected function setUp()
     {
-        $this->queueListIterable = new QueueSingleLinkedListIterable();
+        $this->queueListIterable = new QueueListSingleLinked();
     }
 
     public function testAddThreeItemsToQueueList()
     {
-        $queueItem_1 = new QueueItem('Item1');
-        $queueItem_2 = new QueueItem('Item2');
-        $queueItem_3 = new QueueItem('Item3');
+        $queueItem_1 = new QueueItemSingleLinked('Item1');
+        $queueItem_2 = new QueueItemSingleLinked('Item2');
+        $queueItem_3 = new QueueItemSingleLinked('Item3');
         $this->queueListIterable->enqueue($queueItem_1);
         $this->queueListIterable->enqueue($queueItem_2);
         $this->queueListIterable->enqueue($queueItem_3);
 
-        /** @type QueueItem $firstItem */
+        /** @type QueueItemSingleLinked $firstItem */
         $firstItem = $this->queueListIterable->getFirst();
 
-        /** @type QueueItem $lastItem */
+        /** @type QueueItemSingleLinked $lastItem */
         $lastItem = $this->queueListIterable->getLast();
 
         $this->assertEquals('Item1', $firstItem->getData());
@@ -45,14 +42,14 @@ class QueueSingleLinkedListIterableTest extends \PHPUnit_Framework_TestCase
 
     public function testQueueListIteration()
     {
-        $queueItem_1 = new QueueItem('Item1');
-        $queueItem_2 = new QueueItem('Item2');
-        $queueItem_3 = new QueueItem('Item3');
+        $queueItem_1 = new QueueItemSingleLinked('Item1');
+        $queueItem_2 = new QueueItemSingleLinked('Item2');
+        $queueItem_3 = new QueueItemSingleLinked('Item3');
         $this->queueListIterable->enqueue($queueItem_1);
         $this->queueListIterable->enqueue($queueItem_2);
         $this->queueListIterable->enqueue($queueItem_3);
 
-        $newQueue = new QueueSingleLinkedList();
+        $newQueue = new QueueListSingleLinked();
         foreach ($this->queueListIterable as $queueItem) {
             $newQueue->enqueue($queueItem);
         }
@@ -62,9 +59,9 @@ class QueueSingleLinkedListIterableTest extends \PHPUnit_Framework_TestCase
 
     public function testRemoveFirstItemFromQueueList()
     {
-        $queueItem_1 = new QueueItem('Item1');
-        $queueItem_2 = new QueueItem('Item2');
-        $queueItem_3 = new QueueItem('Item3');
+        $queueItem_1 = new QueueItemSingleLinked('Item1');
+        $queueItem_2 = new QueueItemSingleLinked('Item2');
+        $queueItem_3 = new QueueItemSingleLinked('Item3');
         $this->queueListIterable->enqueue($queueItem_1);
         $this->queueListIterable->enqueue($queueItem_2);
         $this->queueListIterable->enqueue($queueItem_3);
@@ -72,13 +69,13 @@ class QueueSingleLinkedListIterableTest extends \PHPUnit_Framework_TestCase
         $removedItem = $this->queueListIterable->dequeue();
         $this->assertEquals('Item1', $removedItem->getData());
 
-        /** @type QueueItem $firstItem */
+        /** @type QueueItemSingleLinked $firstItem */
         $firstItem = $this->queueListIterable->getFirst();
         $this->assertEquals('Item2', $firstItem->getData());
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testRemoveItemFromEmptyQueueList()
     {

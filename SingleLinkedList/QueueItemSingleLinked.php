@@ -1,10 +1,11 @@
 <?php
 
-namespace Queue\implementation;
+namespace Queue\SingleLinkedList;
 
-use Queue\interfaces\QueueItemInterface;
+use Queue\QueueItemInterface;
+use Queue\QueueItemSingleLinkedInterface;
 
-class QueueItem implements QueueItemInterface
+class QueueItemSingleLinked implements QueueItemSingleLinkedInterface
 {
     protected $data = null;
     /** @type QueueItemInterface $next */

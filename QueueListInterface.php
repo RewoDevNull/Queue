@@ -1,7 +1,7 @@
 <?php
-namespace Queue\interfaces;
+namespace Queue;
 
-interface QueueSingleLinkedListInterface
+interface QueueListInterface extends \Iterator
 {
     /**
      * Remove a item from the queue
@@ -20,10 +20,9 @@ interface QueueSingleLinkedListInterface
     /**
      * Get the first item of the queue
      *
-     * @return QueueItemInterface|null
+     * @return QueueItemSingleLinkedInterface|null
      */
     public function getFirst();
-
 
     /**
      * Get the last item of the queue

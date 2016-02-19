@@ -1,9 +1,10 @@
 <?php
 
-namespace Queue\implementation;
+namespace Queue\SingleLinkedList;
 
-use Queue\interfaces\QueueItemInterface;
-use Queue\interfaces\QueueSingleLinkedListIterableInterface;
+use Queue\QueueItemInterface;
+use Queue\QueueItemSingleLinkedInterface;
+use Queue\QueueListInterface;
 
 /**
  * Class QueueList
@@ -50,13 +51,13 @@ use Queue\interfaces\QueueSingleLinkedListIterableInterface;
  *
  * @package PHPSimpleQueue
  */
-class QueueSingleLinkedListIterable implements QueueSingleLinkedListIterableInterface
+class QueueListSingleLinked implements QueueListInterface
 {
-    /** @type QueueItemInterface $current */
+    /** @type QueueItemSingleLinkedInterface $current */
     protected $current;
-    /** @type QueueItemInterface $last */
+    /** @type QueueItemSingleLinkedInterface $last */
     protected $first;
-    /** @type QueueItemInterface $first */
+    /** @type QueueItemSingleLinkedInterface $first */
     protected $last;
     /** @type int */
     protected $position = 0;
@@ -87,7 +88,7 @@ class QueueSingleLinkedListIterable implements QueueSingleLinkedListIterableInte
         if ($this->first === null) {
             throw new \RuntimeException('the queue list is empty!');
         }
-        /** @type QueueItem $dequeuedItem */
+        /** @type QueueItemSingleLinkedInterface $dequeuedItem */
         $dequeuedItem = $this->first;
         $this->first  = $dequeuedItem->getNext();
         $dequeuedItem->setNextToNull();

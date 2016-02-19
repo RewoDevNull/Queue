@@ -1,9 +1,10 @@
 <?php
 
-namespace Queue\interfaces;
+namespace Queue;
 
+include_once('QueueItemInterface.php');
 
-interface QueueItemInterface
+interface QueueItemSingleLinkedInterface extends QueueItemInterface
 {
     public function getNext();
 
