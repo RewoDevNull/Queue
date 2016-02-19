@@ -6,13 +6,18 @@ use Queue\interfaces\QueueItemInterface;
 
 class QueueItem implements QueueItemInterface
 {
+    protected $data = null;
     /** @type QueueItemInterface $next */
     protected $next = null;
-    protected $data = null;
 
     public function __construct($data = null)
     {
         $this->data = $data;
+    }
+
+    public function getData()
+    {
+        return $this->data;
     }
 
     public function getNext()
@@ -23,11 +28,6 @@ class QueueItem implements QueueItemInterface
     public function setNext(QueueItemInterface $queueItem)
     {
         $this->next = $queueItem;
-    }
-
-    public function getData()
-    {
-        return $this->data;
     }
 
     public function setNextToNull()
