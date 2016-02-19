@@ -1,7 +1,9 @@
 <?php
 namespace Queue\interfaces;
 
-interface QueueSingleLinkedListIterableInterface extends QueueSingleLinkedListInterface, \Iterator, \IteratorAggregate
+include_once('interfaces/QueueSingleLinkedListInterface.php');
+
+interface QueueSingleLinkedListIterableInterface extends QueueSingleLinkedListInterface, \Iterator
 {
 
 }
