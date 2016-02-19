@@ -16,8 +16,8 @@ class Autoloader
     const NAMESPACE_DELIMITER = '\\';
     const FILE_EXTENSION      = '.php';
 
-    const PREFIX_QUEUE    = '/';
-    const AUTOLOADER_PATH = '/Queue/Autoloader';
+    const PREFIX_QUEUE    = DIRECTORY_SEPARATOR;
+    const AUTOLOADER_PATH = DIRECTORY_SEPARATOR . 'Queue' . DIRECTORY_SEPARATOR . 'Autoloader';
 
     /**
      * Returns a anonymous function
@@ -36,10 +36,9 @@ class Autoloader
             $prefix      = self::PREFIX_QUEUE;
 
             $rootPath  = str_replace(self::AUTOLOADER_PATH, '', $currentPath);
-            $classPath = str_replace(self::NAMESPACE_DELIMITER, '/', $class);
+            $classPath = str_replace(self::NAMESPACE_DELIMITER, DIRECTORY_SEPARATOR, $class);
 
             $filePath = $rootPath . $prefix . $classPath . self::FILE_EXTENSION;
-
             if (file_exists($filePath)) {
                 require_once $filePath;
             }
