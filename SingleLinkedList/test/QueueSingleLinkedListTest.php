@@ -2,14 +2,9 @@
 
 namespace Queue\SingleLinkedList\test;
 
+use Queue\Autoloader\Autoloader;
 use Queue\SingleLinkedList\QueueItemSingleLinked;
 use Queue\SingleLinkedList\QueueListSingleLinked;
-
-include_once('../../QueueListInterface.php');
-include_once('../../QueueItemInterface.php');
-include_once('../../QueueItemSingleLinkedInterface.php');
-include_once('../QueueItemSingleLinked.php');
-include_once('../QueueListSingleLinked.php');
 
 class QueueSingleLinkedListTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,6 +13,8 @@ class QueueSingleLinkedListTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        require_once('../../Autoloader/Autoloader.php');
+        spl_autoload_register(Autoloader::getAutoloaderCallable());
         $this->queueListIterable = new QueueListSingleLinked();
     }
 
@@ -82,6 +79,4 @@ class QueueSingleLinkedListTest extends \PHPUnit_Framework_TestCase
     {
         $this->queueListIterable->dequeue();
     }
-
-
 }

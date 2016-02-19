@@ -2,8 +2,6 @@
 
 namespace Queue;
 
-include_once('QueueItemInterface.php');
-
 interface QueueItemDoubleLinkedInterface extends QueueItemSingleLinkedInterface
 {
     public function getPrevious();
