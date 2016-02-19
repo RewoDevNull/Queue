@@ -66,6 +66,7 @@ class QueueSingleLinkedListTest extends \PHPUnit_Framework_TestCase
         $this->queueListIterable->enqueue($queueItem_2);
         $this->queueListIterable->enqueue($queueItem_3);
 
+        /** @type QueueItemSingleLinked $removedItem */
         $removedItem = $this->queueListIterable->dequeue();
         $this->assertEquals('Item1', $removedItem->getData());
 
