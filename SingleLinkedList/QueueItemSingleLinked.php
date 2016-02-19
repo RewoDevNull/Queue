@@ -8,7 +8,6 @@ use Queue\QueueItemSingleLinkedInterface;
 class QueueItemSingleLinked implements QueueItemSingleLinkedInterface
 {
     protected $data = null;
-    /** @type QueueItemInterface $next */
     protected $next = null;
 
     public function __construct($data = null)
