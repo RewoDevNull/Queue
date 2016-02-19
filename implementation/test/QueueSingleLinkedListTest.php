@@ -3,22 +3,22 @@
 namespace Queue\implementation\test;
 
 use Queue\implementation\QueueItem;
-use Queue\implementation\QueueList;
+use Queue\implementation\QueueSingleLinkedList;
 use RuntimeException;
 
-include_once('Queue/interfaces/QueueItemInterface.php');
-include_once('Queue/interfaces/QueueListInterface.php');
-include_once('Queue/implementation/QueueList.php');
-include_once('Queue/implementation/QueueItem.php');
+include_once('interfaces/QueueItemInterface.php');
+include_once('interfaces/QueueSingleLinkedListInterface.php');
+include_once('implementation/QueueItem.php');
+include_once('implementation/QueueSingleLinkedList.php');
 
-class QueueListTest extends \PHPUnit_Framework_TestCase
+class QueueSingleLinkedListTest extends \PHPUnit_Framework_TestCase
 {
-    /** @type QueueList */
+    /** @type QueueSingleLinkedList */
     protected $queueList;
 
     protected function setUp()
     {
-        $this->queueList = new QueueList();
+        $this->queueList = new QueueSingleLinkedList();
     }
 
     public function testAddThreeItemsToQueueList()
@@ -57,9 +57,11 @@ class QueueListTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Item2', $firstItem->getData());
     }
 
+    /**
+     * @expectedException RuntimeException
+     */
     public function testRemoveItemFromEmptyQueueList()
     {
-        $this->expectException(\RuntimeException::class);
         $this->queueList->dequeue();
     }
 

@@ -3,7 +3,7 @@
 namespace Queue\implementation;
 
 use Queue\interfaces\QueueItemInterface;
-use Queue\interfaces\QueueListInterface;
+use Queue\interfaces\QueueSingleLinkedListInterface;
 
 /**
  * Class QueueList
@@ -50,7 +50,7 @@ use Queue\interfaces\QueueListInterface;
  *
  * @package PHPSimpleQueue
  */
-class QueueList implements QueueListInterface
+class QueueSingleLinkedList implements QueueSingleLinkedListInterface
 {
     /** @type QueueItemInterface $last */
     protected $first;

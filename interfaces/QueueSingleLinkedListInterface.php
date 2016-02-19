@@ -1,7 +1,7 @@
 <?php
 namespace Queue\interfaces;
 
-interface QueueListInterface
+interface QueueSingleLinkedListInterface
 {
     /**
      * Remove a item from the queue
