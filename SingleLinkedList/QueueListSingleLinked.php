@@ -103,14 +103,14 @@ class QueueListSingleLinked implements QueueListInterface
     {
         //if the queue list is empty and a item will be added set firstItem equals lastItem
         if ($this->first === null) {
-            $this->first = $enqueuedItem;
-            $this->last  = $enqueuedItem;
+            $this->first   = $enqueuedItem;
+            $this->last    = $enqueuedItem;
+            $this->current = $this->first;
         }
         else {
             $this->last->setNext($enqueuedItem);
             $this->last = $this->last->getNext();
         }
-        $this->current = $this->first;
     }
 
     /**
