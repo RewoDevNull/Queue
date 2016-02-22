@@ -48,7 +48,8 @@ class QueueSingleLinkedListTest extends \PHPUnit_Framework_TestCase
 
         $newQueue = new QueueListSingleLinked();
         foreach ($this->queueListIterable as $queueItem) {
-            $newQueue->enqueue($queueItem);
+            $newQueue->enqueue(clone $queueItem);
+            print_r(clone $queueItem);
         }
 
         $this->assertEquals($newQueue->getFirst(), $this->queueListIterable->getFirst());

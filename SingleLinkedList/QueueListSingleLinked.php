@@ -73,10 +73,7 @@ class QueueListSingleLinked implements QueueListInterface
      */
     public function current()
     {
-        $cur = clone $this->current;
-        $cur->setNextToNull();
-
-        return $cur;
+        return $this->current;
     }
 
     /**
@@ -92,6 +89,8 @@ class QueueListSingleLinked implements QueueListInterface
         $dequeuedItem = $this->first;
         $this->first  = $dequeuedItem->getNext();
         $dequeuedItem->setNextToNull();
+
+        $this->current = $this->first;
 
         return $dequeuedItem;
     }

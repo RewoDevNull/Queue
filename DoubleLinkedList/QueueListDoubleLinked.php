@@ -25,11 +25,7 @@ class QueueListDoubleLinked implements QueueListInterface
 
     public function current()
     {
-        $cur = clone $this->current;
-        $cur->setNextToNull();
-        $cur->setPreviousToNull();
-
-        return $cur;
+        return $this->current;
     }
 
     public function dequeue()
